@@ -1,0 +1,2036 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5BB8W2X");
+    </script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kian Izadpanah — Computer Vision Researcher</title>
+    <meta
+      name="description"
+      content="Kian Izadpanah — MSc student in Computer Science at UCY, collaborating with Gruvi Lab @ SFU. Research in Generative Models and Computer Vision."
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-169007209-3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-169007209-3");
+    </script>
+
+    <style>
+      :root {
+        --bg: #080d18;
+        --bg2: #0e1525;
+        --bg3: #141e33;
+        --surface: #1a2540;
+        --border: rgba(255, 255, 255, 0.07);
+        --accent: #5eead4;
+        --accent2: #a78bfa;
+        --accent3: #fb923c;
+        --text: #e8e6e3;
+        --muted: #8896a8;
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", sans-serif;
+        --mono: "JetBrains Mono", monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.75;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      a:hover {
+        color: var(--accent2);
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      section {
+        position: relative;
+        z-index: 1;
+      }
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        background: rgba(8, 13, 24, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        transition: background 0.3s;
+      }
+      .nav-logo {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .btn-outline {
+        padding: 7px 18px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        border-radius: 3px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 64px;
+        position: relative;
+        overflow: hidden;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(94, 234, 212, 0.12) 0%,
+          transparent 70%
+        );
+        top: -200px;
+        left: -150px;
+        pointer-events: none;
+      }
+      #hero::after {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(167, 139, 250, 0.1) 0%,
+          transparent 70%
+        );
+        bottom: -100px;
+        right: -100px;
+        pointer-events: none;
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 80px;
+        align-items: center;
+        width: 100%;
+        padding: 60px 0;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards 0.1s;
+      }
+      .hero-tag::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .hero-name {
+        font-family: var(--serif);
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.2s;
+      }
+      .hero-name em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--muted);
+        max-width: 540px;
+        margin-bottom: 36px;
+        line-height: 1.7;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.35s;
+      }
+      .hero-subtitle strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 44px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.5s;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 14px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-family: var(--mono);
+        color: var(--muted);
+        background: var(--surface);
+        transition: all 0.2s;
+      }
+      .badge i {
+        font-size: 0.7rem;
+        color: var(--accent);
+      }
+      .badge:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.65s;
+      }
+      .btn-primary {
+        padding: 12px 28px;
+        background: var(--accent);
+        color: var(--bg);
+        border-radius: 3px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        background: #7ff7e4;
+        color: var(--bg);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(94, 234, 212, 0.25);
+      }
+      .hero-social {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .hero-social a {
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 1rem;
+        transition: all 0.2s;
+        background: var(--surface);
+      }
+      .hero-social a:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(94, 234, 212, 0.08);
+        transform: translateY(-2px);
+      }
+      .hero-photo {
+        opacity: 0;
+        animation: fadeIn 0.8s ease forwards 0.3s;
+      }
+      .hero-photo-frame {
+        position: relative;
+        width: 280px;
+        height: 320px;
+        margin: 0 auto;
+      }
+      .hero-photo-frame::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        border-radius: 20px 4px 20px 4px;
+        z-index: 0;
+      }
+      .hero-photo-frame::after {
+        content: "";
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        right: -16px;
+        bottom: -16px;
+        border: 1px solid var(--border);
+        border-radius: 20px 4px 20px 4px;
+        z-index: -1;
+      }
+      .hero-photo-frame img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 18px 2px 18px 2px;
+      }
+      .hero-photo-info {
+        margin-top: 24px;
+        text-align: center;
+      }
+      .hero-photo-info .location {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+      .hero-photo-info .location i {
+        color: var(--accent);
+        margin-right: 4px;
+      }
+
+      /* SECTION COMMONS */
+      .section {
+        padding: 100px 0;
+      }
+      .section-header {
+        margin-bottom: 56px;
+      }
+      .section-label {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        max-width: 60px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .section-title {
+        font-family: var(--serif);
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+      .section-desc {
+        margin-top: 14px;
+        font-size: 1rem;
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+      }
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--border);
+        margin: 0;
+      }
+
+      /* ABOUT */
+      #about {
+        background: var(--bg2);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .about-text p {
+        color: var(--muted);
+        margin-bottom: 18px;
+        line-height: 1.85;
+      }
+      .about-text p strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .about-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .fact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.9rem;
+      }
+      .fact-item i {
+        color: var(--accent);
+        margin-top: 3px;
+        font-size: 0.85rem;
+      }
+      .fact-item span {
+        color: var(--muted);
+      }
+      .fact-item strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .interests-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .interest-card {
+        padding: 20px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: all 0.25s;
+      }
+      .interest-card:hover {
+        border-color: rgba(94, 234, 212, 0.3);
+        transform: translateY(-2px);
+        background: var(--surface);
+      }
+      .interest-card i {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .interest-card h4 {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .interest-card p {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 4px;
+        line-height: 1.5;
+      }
+
+      /* EDUCATION */
+      #education {
+        background: var(--bg);
+      }
+      .edu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .edu-card {
+        padding: 32px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+      }
+      .edu-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+      .edu-card.primary::before {
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+      }
+      .edu-card.collab::before {
+        background: linear-gradient(90deg, var(--accent2), var(--accent3));
+      }
+      .edu-card.bsc::before {
+        background: linear-gradient(90deg, var(--accent), var(--accent3));
+      }
+      .edu-card:hover {
+        border-color: rgba(94, 234, 212, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+      }
+      .edu-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        margin-bottom: 16px;
+      }
+      .edu-badge.current {
+        background: rgba(94, 234, 212, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(94, 234, 212, 0.3);
+      }
+      .edu-badge.collab {
+        background: rgba(167, 139, 250, 0.12);
+        color: var(--accent2);
+        border: 1px solid rgba(167, 139, 250, 0.25);
+      }
+      .edu-badge.completed {
+        background: rgba(251, 146, 60, 0.1);
+        color: var(--accent3);
+        border: 1px solid rgba(251, 146, 60, 0.25);
+      }
+      .edu-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        background: var(--bg2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+        border: 1px solid var(--border);
+      }
+      .edu-card h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .edu-card h3 a {
+        color: var(--text);
+      }
+      .edu-card h3 a:hover {
+        color: var(--accent);
+      }
+      .edu-degree {
+        font-size: 0.9rem;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+      .edu-period {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .edu-courses {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 14px;
+      }
+      .course-tag {
+        padding: 3px 10px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 0.73rem;
+        color: var(--muted);
+        font-family: var(--mono);
+      }
+
+      /* PUBLICATIONS */
+      #publications {
+        background: var(--bg2);
+      }
+      .pub-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .pub-card {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        gap: 24px;
+        padding: 28px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        transition: all 0.3s;
+        align-items: start;
+      }
+      .pub-card:hover {
+        border-color: rgba(94, 234, 212, 0.25);
+        background: var(--surface);
+        transform: translateX(4px);
+      }
+      .pub-year {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--accent);
+        font-weight: 500;
+        padding-top: 4px;
+      }
+      .pub-venue {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--accent2);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .pub-venue::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent2);
+      }
+      .pub-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+      .pub-authors {
+        font-size: 0.87rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .pub-authors strong {
+        color: var(--accent);
+        font-weight: 500;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .pub-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 14px;
+      }
+      .pub-tag {
+        padding: 3px 10px;
+        background: rgba(94, 234, 212, 0.08);
+        border: 1px solid rgba(94, 234, 212, 0.15);
+        border-radius: 4px;
+        font-size: 0.73rem;
+        color: var(--accent);
+        font-family: var(--mono);
+      }
+
+      /* EXPERIENCE */
+      #experience {
+        background: var(--bg);
+      }
+      .exp-timeline {
+        position: relative;
+        padding-left: 28px;
+      }
+      .exp-timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          var(--accent),
+          var(--accent2),
+          transparent
+        );
+      }
+      .exp-item {
+        position: relative;
+        padding: 0 0 48px 36px;
+      }
+      .exp-item:last-child {
+        padding-bottom: 0;
+      }
+      .exp-dot {
+        position: absolute;
+        left: -35px;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid var(--bg);
+        box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.2);
+      }
+      .exp-item:nth-child(even) .exp-dot {
+        background: var(--accent2);
+        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+      }
+      .exp-period {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+      }
+      .exp-card {
+        padding: 24px 28px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: all 0.25s;
+      }
+      .exp-card:hover {
+        border-color: rgba(94, 234, 212, 0.2);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      }
+      .exp-org {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 2px;
+      }
+      .exp-role {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .exp-supervisor {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 14px;
+        font-style: italic;
+      }
+      .exp-supervisor a {
+        color: var(--accent2);
+      }
+      .exp-bullets {
+        list-style: none;
+        padding: 0;
+      }
+      .exp-bullets li {
+        font-size: 0.88rem;
+        color: var(--muted);
+        padding: 4px 0 4px 16px;
+        position: relative;
+        line-height: 1.6;
+      }
+      .exp-bullets li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-size: 0.75rem;
+      }
+
+      /* SKILLS */
+      #skills {
+        background: var(--bg2);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .skill-group {
+        padding: 28px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+      .skill-group h4 {
+        font-size: 0.82rem;
+        font-family: var(--mono);
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .skill-logos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+      .skill-logos img {
+        height: 36px;
+        width: auto;
+        filter: grayscale(0.3) brightness(0.9);
+        transition: all 0.2s;
+        border-radius: 4px;
+      }
+      .skill-logos img:hover {
+        filter: grayscale(0) brightness(1.1);
+        transform: scale(1.05);
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skill-tag {
+        padding: 6px 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-family: var(--mono);
+        transition: all 0.2s;
+        cursor: default;
+      }
+      .skill-tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(94, 234, 212, 0.06);
+      }
+
+      /* CONTACT */
+      #contact {
+        background: var(--bg);
+        padding-bottom: 120px;
+      }
+      .contact-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        transition: all 0.25s;
+        color: inherit;
+      }
+      .contact-item:hover {
+        border-color: rgba(94, 234, 212, 0.3);
+        background: var(--bg3);
+      }
+      .contact-item i {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        background: rgba(94, 234, 212, 0.1);
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .contact-item-text small {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        display: block;
+      }
+      .contact-item-text span {
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+      .contact-socials h4 {
+        font-size: 0.85rem;
+        font-family: var(--mono);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      .social-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .social-card {
+        padding: 18px 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        transition: all 0.25s;
+      }
+      .social-card i {
+        font-size: 1.1rem;
+      }
+      .social-card:hover {
+        border-color: rgba(94, 234, 212, 0.3);
+        color: var(--accent);
+        background: rgba(94, 234, 212, 0.06);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        padding: 28px 32px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      footer p {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      footer span {
+        color: var(--accent);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--bg2);
+          padding: 24px 32px;
+          border-bottom: 1px solid var(--border);
+          gap: 20px;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .hero-photo {
+          order: -1;
+        }
+        .hero-photo-frame {
+          width: 200px;
+          height: 230px;
+        }
+        .about-grid,
+        .edu-grid,
+        .skills-grid,
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .pub-card {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .interests-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .social-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .container {
+          padding: 0 20px;
+        }
+        .hero-name {
+          font-size: 2.5rem;
+        }
+        .interests-grid {
+          grid-template-columns: 1fr;
+        }
+        .edu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--surface);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5BB8W2X"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <div class="nav-logo">KIAN</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experience">Research</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="mailto:kianizadpanah@gmail.com" class="btn-outline"
+          >Get in Touch</a
+        >
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="hero-tag">Computer Vision &amp; Generative Models</div>
+            <h1 class="hero-name">Kian<br /><em>Izadpanah</em></h1>
+            <p class="hero-subtitle">
+              I'm a grad student at the
+              <strong>University of Cyprus</strong>. I love thinking about how
+              AI sees and edits the world. I work closely with the
+              <strong>Gruvi Lab @ SFU</strong> on
+              <strong>Generative Models</strong> and
+              <strong>Computer Vision</strong> and I'm always excited to talk
+              research.
+            </p>
+            <div class="hero-badges">
+              <span class="badge"
+                ><i class="fas fa-graduation-cap"></i> UCY — CS</span
+              >
+              <span class="badge"
+                ><i class="fas fa-flask"></i> Gruvi Lab @ SFU</span
+              >
+              <span class="badge"
+                ><i class="fas fa-image"></i>Computer Vision</span
+              >
+              <span class="badge"
+                ><i class="fas fa-robot"></i> Generative Models</span
+              >
+            </div>
+            <div class="hero-actions">
+              <a href="mailto:kianizadpanah@gmail.com" class="btn-primary">
+                <i class="fas fa-envelope"></i> Contact Me
+              </a>
+              <div class="hero-social">
+                <a
+                  href="https://github.com/KianIzadpanah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <!-- <a href="mailto:kianizadpanah@gmail.com" title="Email">
+                  <i class="fas fa-envelope"></i>
+                </a> -->
+                <!-- <a
+                  href="https://scholar.google.com/scholar?q=Kian+Izadpanah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Google Scholar"
+                > -->
+                  <!-- <i class="fas fa-graduation-cap"></i> -->
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-photo">
+            <div class="hero-photo-frame">
+              <img src="assets/img/me.jpeg" alt="Kian Izadpanah" />
+            </div>
+            <div class="hero-photo-info">
+              <p class="location">
+                <i class="fas fa-map-marker-alt"></i> Nicosia, Cyprus
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">01 — About</div>
+          <h2 class="section-title">Who I Am</h2>
+          <!-- <p class="section-desc">
+            A little about who I am and what keeps me busy.
+          </p> -->
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              Hey, I'm <strong>Kian</strong>, a Computer Vision researcher who
+              genuinely enjoys the process of figuring out how machines can
+              understand and manipulate visual content. I finished my
+              <strong>BSc in Computer Engineering</strong> at
+              <strong>Sharif University of Technology</strong>
+              in September 2025, and I've been lucky to work on some really
+              interesting problems along the way.
+            </p>
+            <p>
+              Right now, I'm a postgraduate student
+              <strong
+                >in Computer Science at the University of Cyprus
+                (UCY)</strong
+              >
+              while also collaborating with the
+              <strong>Gruvi Lab at Simon Fraser University (SFU)</strong>. My
+              main focus these days is on
+              <strong>Generative Models</strong> — it's a
+              space that's moving incredibly fast, and I love being part of it.
+            </p>
+            <p>
+              I get to work with some truly great people. My supervisors —
+              <strong>Ali Mahdavi-Amiri</strong> and
+              <strong>Daniel Cohen-Or</strong> at SFU, and
+              <strong>Yiorgos Chrysantou</strong> and
+              <strong>Andreas Aristidou</strong> at UCY — have shaped the way I
+              think about research more than I can say.
+            </p>
+            <div class="about-facts">
+              <div class="fact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <small style="color: var(--muted); font-size: 0.75rem"
+                    >Location</small
+                  ><br /><strong>Nicosia, Cyprus</strong>
+                </div>
+              </div>
+              <div class="fact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <small style="color: var(--muted); font-size: 0.75rem"
+                    >Email</small
+                  ><br /><a
+                    href="mailto:kianizadpanah@gmail.com"
+                    style="font-size: 0.88rem"
+                    >kianizadpanah@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="fact-item">
+                <i class="fas fa-microscope"></i>
+                <div>
+                  <small style="color: var(--muted); font-size: 0.75rem"
+                    >Focus</small
+                  ><br /><strong>Generative Models</strong>
+                </div>
+              </div>
+              <div class="fact-item">
+                <i class="fab fa-github"></i>
+                <div>
+                  <small style="color: var(--muted); font-size: 0.75rem"
+                    >GitHub</small
+                  ><br /><a
+                    href="https://github.com/KianIzadpanah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="font-size: 0.88rem"
+                    >KianIzadpanah</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal" style="transition-delay: 0.15s">
+            <div style="margin-bottom: 24px">
+              <div
+                class="section-label"
+                style="font-size: 0.7rem; margin-bottom: 16px"
+              >
+                Things I care about
+              </div>
+            </div>
+            <div class="interests-grid">
+              <div class="interest-card">
+                <i class="fas fa-eye" style="color: #5eead4"></i>
+                <h4>Computer Vision</h4>
+                <p>
+                  Teaching machines to see — and actually understand what
+                  they're looking at
+                </p>
+              </div>
+              <!-- <div class="interest-card">
+                <i class="fas fa-paint-brush" style="color: #a78bfa"></i>
+                <h4>Image Editing</h4>
+                <p>
+                  Using Generative Models to change images in ways that feel
+                  natural and controllable
+                </p>
+              </div> -->
+              <div class="interest-card">
+                <i class="fas fa-magic" style="color: #fb923c"></i>
+                <h4>Generative Models</h4>
+                <p>
+                  Diffusion models, Flux — anything that can create or transform
+                  visual content
+                </p>
+              </div>
+              <div class="interest-card">
+                <i class="fas fa-brain" style="color: #f472b6"></i>
+                <h4>Deep Learning</h4>
+                <p>
+                  The underlying machinery that makes all of the above possible
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">02 — Education</div>
+          <h2 class="section-title">Where I've Studied</h2>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card primary reveal">
+            <span class="edu-badge current">Current</span>
+            <div class="edu-logo">🇨🇾</div>
+            <h3>
+              <a
+                href="https://www.ucy.ac.cy/en/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >University of Cyprus (UCY)</a
+              >
+            </h3>
+            <div class="edu-degree">Computer Science</div>
+            <div class="edu-period">Feb. 2026 — Present</div>
+            <p
+              style="
+                font-size: 0.87rem;
+                color: var(--muted);
+                line-height: 1.6;
+                margin-bottom: 12px;
+              "
+            >
+              Doing my graduate research here, focused on generative models and
+              computer vision. Great environment for the kind of work I want to
+              do.
+            </p>
+            <div style="font-size: 0.82rem; color: var(--muted)">
+              <i
+                class="fas fa-users"
+                style="color: var(--accent2); margin-right: 6px"
+              ></i>
+              Supervisors:
+              <a
+                href="https://scholar.google.com/citations?user=hRyFFoAAAAAJ&hl=en"
+                target="_blank"
+                style="color: var(--accent)"
+                >Y. Chrysantou </a
+              >
+              &amp; 
+              <a
+                href="https://www.andreasaristidou.com/"
+                target="_blank"
+                style="color: var(--accent)"
+                >A. Aristidou</a
+              >
+            </div>
+          </div>
+
+          <div class="edu-card collab reveal" style="transition-delay: 0.1s">
+            <span class="edu-badge collab">Collaboration</span>
+            <div class="edu-logo">🇨🇦</div>
+            <h3>
+              <a
+                href="https://gruvi.cs.sfu.ca/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Gruvi Lab @ Simon Fraser University</a
+              >
+            </h3>
+            <div class="edu-degree" style="color: var(--accent2)">
+              Research Collaboration
+            </div>
+            <div class="edu-period">Sep. 2025 — Present</div>
+            <p
+              style="
+                font-size: 0.87rem;
+                color: var(--muted);
+                line-height: 1.6;
+                margin-bottom: 12px;
+              "
+            >
+              I collaborate remotely with this lab on image editing and
+              generative model research. It's been a brilliant experience
+              working with people at the top of the field.
+            </p>
+            <div style="font-size: 0.82rem; color: var(--muted)">
+              <i
+                class="fas fa-users"
+                style="color: var(--accent); margin-right: 6px"
+              ></i>
+              Supervisors:
+              <a
+                href="https://arash-mham.github.io/"
+                target="_blank"
+                style="color: var(--accent)"
+                >A. Mahdavi-Amiri</a
+              >
+              &amp;
+              <a
+                href="https://danielcohenor.com/"
+                target="_blank"
+                style="color: var(--accent)"
+                >D. Cohen-Or</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="edu-card bsc reveal"
+            style="grid-column: 1 / -1; transition-delay: 0.2s"
+          >
+            <span class="edu-badge completed">Completed — Sep. 2025</span>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 16px;
+              "
+            >
+              <img
+                src="assets/img/education/logo.png"
+                alt="Sharif University"
+                style="
+                  height: 40px;
+                  width: auto;
+                  object-fit: contain;
+                  filter: brightness(1.2);
+                "
+              />
+            </div>
+            <h3>
+              <a
+                href="https://en.sharif.ir/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Sharif University of Technology</a
+              >
+            </h3>
+            <div class="edu-degree">BSc in Computer Engineering</div>
+            <div class="edu-period">Sep. 2021 — Sep. 2025</div>
+            <p
+              style="
+                font-size: 0.87rem;
+                color: var(--muted);
+                line-height: 1.6;
+                margin-bottom: 16px;
+              "
+            >
+              Sharif is where it all started for me. Four years of hard work,
+              great professors, and some of the smartest classmates I've ever
+              met. I took on graduate-level courses in ML and 3D Vision
+              alongside the core curriculum — it pushed me in all the right
+              ways.
+            </p>
+            <div class="edu-courses">
+              <span class="course-tag">3D Computer Vision ★</span>
+              <span class="course-tag">Machine Learning ★</span>
+              <span class="course-tag">Artificial Intelligence</span>
+              <span class="course-tag">Linear Algebra</span>
+              <span class="course-tag">Probability &amp; Statistics</span>
+              <span class="course-tag">Computer Simulation</span>
+              <span class="course-tag">Game Theory</span>
+              <span class="course-tag">Automata Theory</span>
+              <span class="course-tag">Database Design</span>
+            </div>
+            <p
+              style="
+                font-size: 0.73rem;
+                color: var(--muted);
+                margin-top: 10px;
+                font-family: var(--mono);
+              "
+            >
+              ★ Graduate-level course
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">03 — Publications</div>
+          <h2 class="section-title">What I've Published</h2>
+          <p class="section-desc">
+            A couple of papers I'm proud to have contributed to.
+          </p>
+        </div>
+        <div class="pub-list">
+          <div class="pub-card reveal">
+            <div class="pub-year">2026</div>
+            <div>
+              <div class="pub-venue">Computer Vision · Robotics · Dataset</div>
+              <div class="pub-title">
+                JRDB-Pose3D: A Multi-person 3D Human Pose and Shape Estimation
+                Dataset for Robotics
+              </div>
+              <div class="pub-authors">
+                Sandika Biswas, <strong>Kian Izadpanah</strong>, Hamid
+                Rezatofighi
+              </div>
+              <div class="pub-tags">
+                <span class="pub-tag">3D Human Pose</span>
+                <span class="pub-tag">SMPLX</span>
+                <span class="pub-tag">Robotics</span>
+                <span class="pub-tag">Dataset</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-card reveal" style="transition-delay: 0.1s">
+            <div class="pub-year">2025</div>
+            <div>
+              <div class="pub-venue">Networking · VANETs · Multimedia</div>
+              <div class="pub-title">
+                CITRON: Collaborative Image Stitching and Redundancy Elimination
+                for Energy-Efficient Multimedia Offloading in VANETs
+              </div>
+              <div class="pub-authors">
+                <strong>Kian Izadpanah</strong>, Mohammad Hossein Soheilian,
+                Bardia Safaei
+              </div>
+              <div class="pub-tags">
+                <span class="pub-tag">Image Stitching</span>
+                <span class="pub-tag">VANETs</span>
+                <span class="pub-tag">Energy Efficiency</span>
+                <span class="pub-tag">Multimedia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">04 — Research</div>
+          <h2 class="section-title">Where I've Worked</h2>
+          <p class="section-desc">
+            Labs and groups I've had the privilege of being part of.
+          </p>
+        </div>
+        <div class="exp-timeline reveal">
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-period">Jul. 2024 — Present</div>
+            <div class="exp-card">
+              <div class="exp-org">
+                <a
+                  href="https://core-lab.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >CORE Lab, Cambridge University</a
+                >
+              </div>
+              <div class="exp-role">Research Assistant (Summer Internship)</div>
+              <div class="exp-supervisor">
+                Supervisor:
+                <a
+                  href="https://scholar.google.ch/citations?user=dXt1WOUAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Prof. Cengiz Öztireli</a
+                >
+              </div>
+              <ul class="exp-bullets">
+                <li>
+                  Working on generating and editing
+                  <strong style="color: var(--text)">3D human poses</strong> —
+                  it's a tricky problem with a lot of moving parts.
+                </li>
+                <li>
+                  Getting hands-on with 3D frameworks like Joint2Human, FOF,
+                  SMPLX, STAR, and SPIN.
+                </li>
+                <li>
+                  Using text-driven models like CLIP, CLIP-PAE, and CLIP-Forge
+                  to guide generation.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-period">Nov. 2023 — Present</div>
+            <div class="exp-card">
+              <div class="exp-org">
+                <a
+                  href="https://vl4ai.erc.monash.edu/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >VL4AI Lab, Monash University</a
+                >
+              </div>
+              <div class="exp-role">Research Assistant</div>
+              <div class="exp-supervisor">
+                Supervisor:
+                <a
+                  href="https://scholar.google.com/citations?user=VxAuxMwAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Prof. Hamid Rezatofighi</a
+                >
+              </div>
+              <ul class="exp-bullets">
+                <li>
+                  Contributing to the
+                  <strong style="color: var(--text)">JRDB dataset</strong> —
+                  specifically improving 3D human pose estimation and correction
+                  at scale.
+                </li>
+                <li>
+                  Working with SMPLX for 3D mesh generation and Quaternion
+                  representations for rotations.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-period">Jul. 2023 — Nov. 2023</div>
+            <div class="exp-card">
+              <div class="exp-org">
+                <a
+                  href="https://github.com/rohban-lab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Robust/Interpretable ML Lab, Sharif University</a
+                >
+              </div>
+              <div class="exp-role">Research Assistant</div>
+              <div class="exp-supervisor">
+                Supervisor:
+                <a
+                  href="https://scholar.google.com/citations?user=pRyJ6FkAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Prof. Mohammad Hossein Rohban</a
+                >
+              </div>
+              <ul class="exp-bullets">
+                <li>
+                  Worked on making a medical detection model generalise better
+                  across hospitals and scanners — the classic
+                  <strong style="color: var(--text)">domain adaptation</strong>
+                  challenge, but with real stakes.
+                </li>
+                <li>
+                  Combined diffusion-based generative models and a VAE-based OOD
+                  detector to boost RetinaNet's performance on the MIDOG
+                  benchmark.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-period">Mar. 2023 — Jun. 2023</div>
+            <div class="exp-card">
+              <div class="exp-org">
+                <a
+                  href="https://deepmind.google/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Google</a
+                >
+              </div>
+              <div class="exp-role">Research Assistant</div>
+              <div class="exp-supervisor">
+                Supervisor:
+                <a
+                  href="https://scholar.google.com/citations?user=GSHmKZkAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Prof. Hossein Mobahi</a
+                >
+              </div>
+              <ul class="exp-bullets">
+                <li>
+                  Built
+                  <strong style="color: var(--text)"
+                    >AGSAM (Adaptive-Gradient SAM)</strong
+                  >
+                  — an improved version of Sharpness-Aware Minimization that
+                  adapts to the geometry of the loss landscape.
+                </li>
+                <li>
+                  Extended the core gradient idea by factoring in both the slope
+                  and the curvature of the objective function.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div class="exp-period">Feb. 2023 — Apr. 2023</div>
+            <div class="exp-card">
+              <div class="exp-org">
+                <a
+                  href="https://github.com/rohban-lab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Robust/Interpretable ML Lab, Sharif University</a
+                >
+              </div>
+              <div class="exp-role">Research Assistant</div>
+              <div class="exp-supervisor">
+                Supervisor:
+                <a
+                  href="https://scholar.google.com/citations?user=pRyJ6FkAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Prof. Mohammad Hossein Rohban</a
+                >
+              </div>
+              <ul class="exp-bullets">
+                <li>
+                  Dug into
+                  <strong style="color: var(--text)"
+                    >anomaly detection and backdoor attacks</strong
+                  >
+                  — how they work, and how to defend against them.
+                </li>
+                <li>
+                  Applied OOD scoring techniques to video surveillance settings,
+                  which was a fun challenge in itself.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">05 — Skills</div>
+          <h2 class="section-title">Tools I Work With</h2>
+        </div>
+        <div class="skills-grid reveal">
+          <div class="skill-group">
+            <h4>Programming Languages</h4>
+            <div class="skill-logos">
+              <img
+                src="https://www.vectorlogo.zone/logos/python/python-horizontal.svg"
+                alt="Python"
+                title="Python"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/java/java-horizontal.svg"
+                alt="Java"
+                title="Java"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/golang/golang-icon.svg"
+                alt="Go"
+                title="Go"
+              />
+              <img
+                src="https://cdn.worldvectorlogo.com/logos/c.svg"
+                alt="C"
+                title="C"
+                style="height: 30px"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg"
+                alt="JavaScript"
+                title="JavaScript"
+                style="height: 30px"
+              />
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>ML / CV Frameworks</h4>
+            <div class="skill-logos">
+              <img
+                src="https://www.vectorlogo.zone/logos/pytorch/pytorch-ar21.svg"
+                alt="PyTorch"
+                title="PyTorch"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg"
+                alt="TensorFlow"
+                title="TensorFlow"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/numpy/numpy-ar21.svg"
+                alt="NumPy"
+                title="NumPy"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/opencv/opencv-ar21.svg"
+                alt="OpenCV"
+                title="OpenCV"
+              />
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Research Expertise</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">Diffusion Models</span>
+              <span class="skill-tag">Flux</span>
+              <span class="skill-tag">SMPLX / 3D Pose</span>
+              <span class="skill-tag">CLIP</span>
+              <span class="skill-tag">Domain Adaptation</span>
+              <span class="skill-tag">OOD Detection</span>
+              <span class="skill-tag">Image Editing</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Tooling &amp; DevOps</h4>
+            <div class="skill-logos">
+              <img
+                src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg"
+                alt="Git"
+                title="Git"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/github/github-ar21.svg"
+                alt="GitHub"
+                title="GitHub"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/jupyter/jupyter-ar21.svg"
+                alt="Jupyter"
+                title="Jupyter"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">06 — Contact</div>
+          <h2 class="section-title">Say Hello</h2>
+          <p class="section-desc">
+            I'm always happy to chat about research, collaborations, or just
+            interesting ideas. Feel free to reach out.
+          </p>
+        </div>
+        <div class="contact-inner">
+          <div class="reveal">
+            <div class="contact-items">
+              <a href="mailto:kianizadpanah@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-item-text">
+                  <small>Personal Email</small>
+                  <span>kianizadpanah@gmail.com</span>
+                </div>
+              </a>
+              <a href="mailto:kian_izadpanah@sfu.ca" class="contact-item">
+                <i
+                  class="fas fa-university"
+                  style="
+                    background: rgba(167, 139, 250, 0.1);
+                    color: var(--accent2);
+                  "
+                ></i>
+                <div class="contact-item-text">
+                  <small>SFU Email</small>
+                  <span>kian_izadpanah@sfu.ca</span>
+                </div>
+              </a>
+              <a href="mailto:izadpanah.kian@ucy.ac.cy" class="contact-item">
+                <i
+                  class="fas fa-university"
+                  style="
+                    background: rgba(251, 146, 60, 0.1);
+                    color: var(--accent3);
+                  "
+                ></i>
+                <div class="contact-item-text">
+                  <small>UCY Email</small>
+                  <span>izadpanah.kian@ucy.ac.cy</span>
+                </div>
+              </a>
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-item-text">
+                  <small>Location</small>
+                  <span>Nicosia, Cyprus</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-socials reveal" style="transition-delay: 0.15s">
+            <h4>Find Me Online</h4>
+            <div class="social-grid">
+              <a
+                href="https://github.com/KianIzadpanah"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+              >
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="mailto:kianizadpanah@gmail.com" class="social-card">
+                <i class="fab fa-google"></i>
+                <span>Gmail</span>
+              </a>
+              <!-- <a href="https://scholar.google.com/scholar?q=Kian+Izadpanah" target="_blank" rel="noopener noreferrer" class="social-card">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Scholar</span>
+            </a> -->
+              <!-- <a href="https://www.linkedin.com/in/kianizadpanah" target="_blank" rel="noopener noreferrer" class="social-card">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        Made with care by <span>Kian Izadpanah</span> &middot;
+        <span>UCY · Gruvi Lab @ SFU</span> &middot;
+        <span id="year"></span>
+      </p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      function toggleMenu() {
+        document.getElementById("nav-links").classList.toggle("open");
+      }
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // Navbar scroll opacity
+      window.addEventListener("scroll", () => {
+        document.getElementById("navbar").style.background =
+          window.scrollY > 50 ? "rgba(8,13,24,0.97)" : "rgba(8,13,24,0.85)";
+      });
+    </script>
+  </body>
+</html>
