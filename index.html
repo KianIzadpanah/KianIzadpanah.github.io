@@ -707,6 +707,30 @@
         margin-bottom: 8px;
         line-height: 1.4;
       }
+      .pub-title a {
+        color: var(--text);
+        display: inline;
+        transition: color 0.2s;
+      }
+      .pub-title a:hover {
+        color: var(--accent);
+      }
+      .pub-title a i {
+        font-size: 0.7em;
+        margin-left: 8px;
+        color: var(--muted);
+        vertical-align: baseline;
+        transition: color 0.2s;
+      }
+      .pub-title a:hover i {
+        color: var(--accent);
+      }
+      .pub-note {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 8px;
+      }
       .pub-authors {
         font-size: 0.87rem;
         color: var(--muted);
@@ -732,30 +756,6 @@
         font-size: 0.73rem;
         color: var(--accent);
         font-family: var(--mono);
-      }
-      .pub-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 16px;
-      }
-      .pub-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 6px 14px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        font-family: var(--mono);
-        font-size: 0.75rem;
-        color: var(--muted);
-        transition: all 0.25s;
-      }
-      .pub-link:hover {
-        color: var(--accent);
-        border-color: rgba(94, 234, 212, 0.35);
-        background: rgba(94, 234, 212, 0.06);
       }
 
       /* EXPERIENCE */
@@ -1297,22 +1297,24 @@
                 SIGGRAPH Asia 2026 · Image Editing · Generative
                 Models
               </div>
-              <div class="pub-title">SIA: Selective Image Analogy</div>
-              <div class="pub-authors"><strong>Kian Izadpanah</strong></div>
+              <div class="pub-title">
+                <a
+                  href="https://selective-image-analogy.github.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >SIA: Selective Image Analogy <i class="fas fa-arrow-up-right-from-square"></i></a
+                >
+              </div>
+              <div class="pub-authors">
+                Amirhossein Alimohammadi*, <strong>Kian Izadpanah*</strong>,
+                Bardiya Kariminia, Yiorgos Chrysanthou, Ali Mahdavi-Amiri
+              </div>
+              <div class="pub-note">* Equal contribution</div>
               <div class="pub-tags">
                 <span class="pub-tag">Image Analogy</span>
                 <span class="pub-tag">Image Editing</span>
                 <span class="pub-tag">Diffusion Models</span>
                 <span class="pub-tag">SIGGRAPH Asia</span>
-              </div>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://selective-image-analogy.github.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><i class="fas fa-globe"></i> Project Page</a
-                >
               </div>
             </div>
           </div>
@@ -1322,8 +1324,13 @@
             <div>
               <div class="pub-venue">Computer Vision · Robotics · Dataset</div>
               <div class="pub-title">
-                JRDB-Pose3D: A Multi-person 3D Human Pose and Shape Estimation
-                Dataset for Robotics
+                <a
+                  href="https://arxiv.org/abs/2602.03064"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >JRDB-Pose3D: A Multi-person 3D Human Pose and Shape
+                  Estimation Dataset for Robotics <i class="fas fa-arrow-up-right-from-square"></i></a
+                >
               </div>
               <div class="pub-authors">
                 Sandika Biswas, <strong>Kian Izadpanah</strong>, Hamid
@@ -1335,15 +1342,6 @@
                 <span class="pub-tag">Robotics</span>
                 <span class="pub-tag">Dataset</span>
               </div>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2602.03064"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><i class="fas fa-file-lines"></i> arXiv</a
-                >
-              </div>
             </div>
           </div>
 
@@ -1352,8 +1350,14 @@
             <div>
               <div class="pub-venue">Autonomous Vehicles · VANETs · Multimedia</div>
               <div class="pub-title">
-                CITRON: Collaborative Image Stitching and Redundancy Elimination
-                for Energy-Efficient Multimedia Offloading in VANETs
+                <a
+                  href="https://ieeexplore.ieee.org/abstract/document/11615289"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >CITRON: Collaborative Image Stitching and Redundancy
+                  Elimination for Energy-Efficient Multimedia Offloading in
+                  VANETs <i class="fas fa-arrow-up-right-from-square"></i></a
+                >
               </div>
               <div class="pub-authors">
                 <strong>Kian Izadpanah</strong>, Mohammad Hossein Soheilian,
@@ -1364,15 +1368,6 @@
                 <span class="pub-tag">VANETs</span>
                 <span class="pub-tag">Energy Efficiency</span>
                 <span class="pub-tag">Multimedia</span>
-              </div>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://ieeexplore.ieee.org/abstract/document/11615289"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><i class="fas fa-book-open"></i> IEEE Xplore</a
-                >
               </div>
             </div>
           </div>
